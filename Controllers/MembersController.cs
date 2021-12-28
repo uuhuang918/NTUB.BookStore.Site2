@@ -97,7 +97,7 @@ namespace NTUB.BookStore.Site.Controllers
             return url;
 
         }
-
+        //mmmm
         public ActionResult Logout()
 		{
             Session.Abandon();
