@@ -95,6 +95,20 @@ namespace NTUB.BookStore.Site.Models.Core
 
 			repository.Update(entity);
 		}
+
+		public void ChangePassword(ChangePasswordRequest request)
+		{
+			MemberEntity entity = repository.Load(request.CurrentUserAccount);
+			if (entity == null) throw new Exception("找不到要修改的會員紀錄");
+
+			string encryptedPassword=HashUtility.ToSHA256(request.OriginalPassword,MemberEntity.Salt);
+			bool isSamePassword = string.Compare(encryptedPassword, entity.Password) == 0;
+			if (isSamePassword) throw new Exception("原始密碼不符，無法變更");
+
+			//更新紀錄
+			entity.Password = HashUtility.ToSHA256(request.NewPassword, MemberEntity.Salt);
+			repository.UpdatePassword(entity);
+		}
 	}
 
 }

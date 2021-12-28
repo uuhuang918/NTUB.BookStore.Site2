@@ -20,6 +20,27 @@ namespace NTUB.BookStore.Site.Models.Infrastructures.Repositories
 			db.SaveChanges();
 		}
 
+		public void Update(MemberEntity entity)
+		{
+			var member = db.Members.Find(entity.Id);
+
+			member.Account = entity.Account;
+			member.Mobile = entity.Mobile;
+			member.IsConfirmed = entity.IsConfirmed;
+			member.ConfirmCode = entity.ConfirmCode;
+			member.Email = entity.Email;
+
+			db.SaveChanges();
+		}
+
+		public void UpdatePassword(MemberEntity entity)
+		{
+			var member = db.Members.Find(entity.Id);
+
+			member.Password=entity.Password;
+
+			db.SaveChanges();
+		}
 		public void Create(MemberEntity entity)
 		{
 			Member member = new Member
@@ -56,9 +77,6 @@ namespace NTUB.BookStore.Site.Models.Infrastructures.Repositories
 			return entity != null;
 		}
 
-
-
-
 		public MemberEntity Load(int memberId)
 		{
 			return db.Members.SingleOrDefault(x=>x.Id==memberId).ToEntity();
@@ -79,7 +97,7 @@ namespace NTUB.BookStore.Site.Models.Infrastructures.Repositories
 
 		public MemberEntity Load(string account)
 		  =>db.Members.SingleOrDefault(x => x.Account == account).ToEntity();
-		
+
 	}
 	public static class MemberEntityExtensions
 	{

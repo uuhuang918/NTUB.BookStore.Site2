@@ -105,6 +105,7 @@ namespace NTUB.BookStore.Site.Controllers
             return Redirect("/Members/Login");
 		}
 
+        [Authorize]
         public ActionResult EditProfile()
 		{
             string currentUserAccount= User.Identity.Name;
@@ -113,14 +114,17 @@ namespace NTUB.BookStore.Site.Controllers
             return View(model);
         }
 
+        [Authorize]
         [HttpPost]
         public ActionResult EditProfile(EditProfileVM model)
         {
-           if(ModelState.IsValid==false)
+            string currentUserAccount = User.Identity.Name;
+
+            if (ModelState.IsValid==false)
 			{
                 return View(model);
 			}
-            UpdateProfileRequest request = model.ToRequest();
+            UpdateProfileRequest request = model.ToRequest(currentUserAccount);
             try
 			{
                 service.UpdateProfile(request);
@@ -131,10 +135,52 @@ namespace NTUB.BookStore.Site.Controllers
 			}
             if(ModelState.IsValid)
 			{
-
+                if (string .Compare(User.Identity.Name,model.Account)==0)
+				{
+                    return RedirectToAction("Index");
+				}
+                else
+				{
+                    return RedirectToAction("Logout");
+				}
 			}
             else
 			{
+                return View(model);
+            }
+        }
+
+        [Authorize]
+        public ActionResult EditPassword()
+		{
+            return View();
+		}
+
+        [HttpPost]
+        [Authorize]
+        public ActionResult EditPassword(EditPasswordVM model)
+        {
+            string currentUserAccount = User.Identity.Name;
+
+            if (ModelState.IsValid == false)
+            {
+                return View(model);
+            }
+            ChangePasswordRequest request = model.ToRequest(currentUserAccount);
+            try
+            {
+                service.ChangePassword(request);
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, ex.Message);
+            }
+            if (ModelState.IsValid)
+            {
+                    return RedirectToAction("Index");
+            }
+            else
+            {
                 return View(model);
             }
         }
