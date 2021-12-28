@@ -97,7 +97,7 @@ namespace NTUB.BookStore.Site.Controllers
             return url;
 
         }
-        //mmmm
+       
         public ActionResult Logout()
 		{
             Session.Abandon();
@@ -116,7 +116,27 @@ namespace NTUB.BookStore.Site.Controllers
         [HttpPost]
         public ActionResult EditProfile(EditProfileVM model)
         {
-            return View(model);
+           if(ModelState.IsValid==false)
+			{
+                return View(model);
+			}
+            UpdateProfileRequest request = model.ToRequest();
+            try
+			{
+                service.UpdateProfile(request);
+			}
+            catch (Exception ex)
+			{
+                ModelState.AddModelError(string.Empty,ex.Message);
+			}
+            if(ModelState.IsValid)
+			{
+
+			}
+            else
+			{
+                return View(model);
+            }
         }
     }
 }

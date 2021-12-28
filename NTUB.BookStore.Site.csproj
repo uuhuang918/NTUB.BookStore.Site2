@@ -136,6 +136,7 @@
     <Compile Include="Models\Core\Interfaces\IMemberRepository.cs" />
     <Compile Include="Models\Core\MemberService.cs" />
     <Compile Include="Models\DTOs\LoginResponse.cs" />
+    <Compile Include="Models\DTOs\UpdateProfileRequest.cs" />
     <Compile Include="Models\EFModels\AppDbContext.cs" />
     <Compile Include="Models\EFModels\Member.cs" />
     <Compile Include="Models\Entities\MemberEntity.cs" />

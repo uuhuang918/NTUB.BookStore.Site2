@@ -1,4 +1,5 @@
-﻿using NTUB.BookStore.Site.Models.Entities;
+﻿using NTUB.BookStore.Site.Models.DTOs;
+using NTUB.BookStore.Site.Models.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -44,5 +45,19 @@ namespace NTUB.BookStore.Site.Models.ViewModels
                 Email = source.Email,
             };
 		}
-	}
+
+        public static UpdateProfileRequest ToRequest(this EditProfileVM source,string currentUserAccount)
+		{
+            return new UpdateProfileRequest
+            {
+                CurrentUserAccount = currentUserAccount,
+                Account = source.Account,
+                Email = source.Email,
+                Mobile = source.Mobile,
+                Name = source.Name,
+            };
+
+		}
+            
+        }
 }

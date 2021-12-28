@@ -50,6 +50,15 @@ namespace NTUB.BookStore.Site.Models.Infrastructures.Repositories
 			}
 		}
 
+		public bool IsExist(string account,int excludeId)
+		{
+			var entity = db.Members.SingleOrDefault(x => x.Id != excludeId&& x.Account==account);
+			return entity != null;
+		}
+
+
+
+
 		public MemberEntity Load(int memberId)
 		{
 			return db.Members.SingleOrDefault(x=>x.Id==memberId).ToEntity();
