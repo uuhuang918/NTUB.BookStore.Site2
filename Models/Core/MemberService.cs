@@ -50,34 +50,34 @@ namespace NTUB.BookStore.Site.Models.Core
 				{
 					Name = request.Name,
 					Email = request.Email,
-					ConfirmCode=confirmCode,
+					ConfirmCode = confirmCode,
 				}
 			};
 		}
 
-		public void ActiveRegister(int memberId,string confirmCode)
+		public void ActiveRegister(int memberId, string confirmCode)
 		{
 			MemberEntity entity = repository.Load(memberId);
 			if (entity == null) return;
 			if (string.Compare(entity.ConfirmCode, confirmCode) != 0) return;
 			repository.ActiveRegister(memberId);
 		}
-		public LoginResponse Login(string account,string password)
+		public LoginResponse Login(string account, string password)
 		{
 			MemberEntity member = repository.Load(account);
 			if (member == null)
 			{
 				return LoginResponse.Fail("帳密有誤");
 			}
-			if(member.IsConfirmed==false)
+			if (member.IsConfirmed == false)
 			{
 				return LoginResponse.Fail("會員資格尚未確認");
 			}
-			string encryptedPassword=HashUtility.ToSHA256(password,MemberEntity.Salt);
-			return (String.CompareOrdinal(member.Password,encryptedPassword) == 0)
-			?LoginResponse.Success()
-			:LoginResponse.Fail("帳密有誤");
-			
+			string encryptedPassword = HashUtility.ToSHA256(password, MemberEntity.Salt);
+			return (String.CompareOrdinal(member.Password, encryptedPassword) == 0)
+			? LoginResponse.Success()
+			: LoginResponse.Fail("帳密有誤");
+
 		}
 
 		public void UpdateProfile(UpdateProfileRequest request)
@@ -88,10 +88,10 @@ namespace NTUB.BookStore.Site.Models.Core
 			bool isExists = repository.IsExist(request.Account, entity.Id);
 			if (isExists) throw new Exception("帳號已被使用過，無法變更");
 
-			entity.Name=request.Name;
-			entity.Mobile=request.Mobile;
-			entity.Email=request.Email;
-			entity.Account=request.Account;
+			entity.Name = request.Name;
+			entity.Mobile = request.Mobile;
+			entity.Email = request.Email;
+			entity.Account = request.Account;
 
 			repository.Update(entity);
 		}
@@ -101,14 +101,51 @@ namespace NTUB.BookStore.Site.Models.Core
 			MemberEntity entity = repository.Load(request.CurrentUserAccount);
 			if (entity == null) throw new Exception("找不到要修改的會員紀錄");
 
-			string encryptedPassword=HashUtility.ToSHA256(request.OriginalPassword,MemberEntity.Salt);
+			string encryptedPassword = HashUtility.ToSHA256(request.OriginalPassword, MemberEntity.Salt);
 			bool isSamePassword = string.Compare(encryptedPassword, entity.Password) == 0;
 			if (isSamePassword) throw new Exception("原始密碼不符，無法變更");
 
 			//更新紀錄
 			entity.Password = HashUtility.ToSHA256(request.NewPassword, MemberEntity.Salt);
-			repository.UpdatePassword(entity);
+			repository.UpdatePassword(entity.Id, entity.EncryptedPassword);
+		}
+
+		public void RequestResetPassword(string account, string email, string urlTemplate)
+		{
+			MemberEntity entity = repository.Load(account);
+			if (entity == null)
+			{
+				throw new Exception("帳號或Email錯誤");
+			}
+			if (string.Compare(email, entity.Email) != 0)
+			{
+				throw new Exception("帳號或Email錯誤");
+			}
+			if (entity.IsConfirmed == false)
+			{
+				throw new Exception("您尚未啟用本帳號，請先完成才能重設密碼");
+			}
+			string confirmCode = Guid.NewGuid().ToString("N");
+			entity.ConfirmCode = confirmCode;
+			repository.Update(entity);
+
+			string url = string.Format(urlTemplate, entity.Id, confirmCode);
+			new EmailHelper().SendForgetPasswordEmail(url, entity.Name, email);
+		}
+
+		public void ResetPassword(int memberId, string confirmCode, string newPassword)
+		{
+			MemberEntity entity=repository.Load(memberId);
+			if (entity == null) throw new Exception("找不到對應的會員紀錄");
+			if(string.Compare(confirmCode, entity.ConfirmCode) != 0)
+			{
+				throw new Exception("找不到對應的會員紀錄");
+			}
+
+			entity.Password = newPassword;
+			repository.UpdatePassword(memberId,entity.EncryptedPassword);
+			entity.ConfirmCode = null;
+			repository.Update(entity);
 		}
 	}
-
 }

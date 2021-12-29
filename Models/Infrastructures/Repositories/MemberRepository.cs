@@ -20,7 +20,7 @@ namespace NTUB.BookStore.Site.Models.Infrastructures.Repositories
 			db.SaveChanges();
 		}
 
-		public void Update(MemberEntity entity)
+		public void Update(MemberEntityWithoutPassword entity)
 		{
 			var member = db.Members.Find(entity.Id);
 
@@ -33,11 +33,11 @@ namespace NTUB.BookStore.Site.Models.Infrastructures.Repositories
 			db.SaveChanges();
 		}
 
-		public void UpdatePassword(MemberEntity entity)
+		public void UpdatePassword(int memberId, string encryptedPassword)
 		{
-			var member = db.Members.Find(entity.Id);
+			var member = db.Members.Find(memberId);
 
-			member.Password=entity.Password;
+			member.Password=encryptedPassword;
 
 			db.SaveChanges();
 		}

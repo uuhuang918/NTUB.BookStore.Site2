@@ -6,24 +6,25 @@ using System.Web;
 
 namespace NTUB.BookStore.Site.Models.Entities
 {
-
-	public class MemberEntity
+    public class MemberEntity:MemberEntityWithoutPassword
+	{
+        public string Password { get; set; }
+        public string EncryptedPassword
+        {
+            get
+            {
+                string salt = "!@#$$DGTEGYT";
+                string result = HashUtility.ToSHA256(this.Password, salt);
+                return result;
+            }
+        }
+    }
+    public class MemberEntityWithoutPassword
 	{
         public const string Salt= "!@#$$DGTEGYT";
         public int Id { get; set; }
 
         public string Account { get; set; }
-
-        public string Password { get; set; }
-		public string  EncryptedPassword
-		{
-			get
-			{
-                string salt = "!@#$$DGTEGYT";
-                string result = HashUtility.ToSHA256(this.Password, salt);
-                return result;
-			}
-        }
 
 		public string Name { get; set; }
 
