@@ -6,6 +6,7 @@ using System.Web;
 
 namespace NTUB.BookStore.Site.Models.Entities
 {
+
 	public class MemberEntity
 	{
         public const string Salt= "!@#$$DGTEGYT";
