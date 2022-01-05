@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -9,8 +10,19 @@ namespace NTUB.BookStore.Site.Controllers
 {
 	public class HomeController : Controller
 	{
+		private string Path
+		{
+			get
+			{
+				string folder = ConfigurationManager.AppSettings
+					["productImageFolder"].ToString();
+				return Server.MapPath(folder);
+			}
+		}
+
 		public ActionResult Index()
 		{
+			ViewBag.Path = Path;	
 			return View();
 		}
 
