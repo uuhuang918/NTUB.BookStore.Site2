@@ -67,8 +67,9 @@ namespace NTUB.BookStore.Site.Models.Entities
 			var item = Items.SingleOrDefault(x=>x.Product.Id == productId);
 			item.Qty = newQty;
 		}
+
+	    public IEnumerable<CartItemEntity> GetItems()
+			=>this.Items;
 	}
-
-
 
 	}

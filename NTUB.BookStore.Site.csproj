@@ -134,6 +134,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Core\CustomerService.cs" />
+    <Compile Include="Models\Core\Interfaces\ICartRepository.cs" />
     <Compile Include="Models\Core\Interfaces\ICustomerRepository.cs" />
     <Compile Include="Models\Core\Interfaces\IMemberRepository.cs" />
     <Compile Include="Models\Core\Interfaces\IProductRepository.cs" />
@@ -143,6 +144,8 @@
     <Compile Include="Models\Core\MemberService.cs" />
     <Compile Include="Models\Core\StockService.cs" />
     <Compile Include="Models\DTOs\ChangePasswordRequest.cs" />
+    <Compile Include="Models\DTOs\CreateOrderItem.cs" />
+    <Compile Include="Models\DTOs\CreateOrderRequest.cs" />
     <Compile Include="Models\DTOs\DeductStockInfo.cs" />
     <Compile Include="Models\DTOs\LoginResponse.cs" />
     <Compile Include="Models\DTOs\ReviseStockInfo.cs" />
