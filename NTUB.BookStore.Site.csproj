@@ -133,7 +133,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Core\Interfaces\CustomerEntity.cs" />
+    <Compile Include="Models\Core\CustomerService.cs" />
     <Compile Include="Models\Core\Interfaces\ICustomerRepository.cs" />
     <Compile Include="Models\Core\Interfaces\IMemberRepository.cs" />
     <Compile Include="Models\Core\Interfaces\IProductRepository.cs" />
@@ -155,6 +155,7 @@
     <Compile Include="Models\EFModels\Order.cs" />
     <Compile Include="Models\EFModels\OrderItem.cs" />
     <Compile Include="Models\EFModels\Product.cs" />
+    <Compile Include="Models\Entities\CartProductEntity.cs" />
     <Compile Include="Models\Entities\CategoryEntity.cs" />
     <Compile Include="Models\Entities\CustomerEntiity.cs" />
     <Compile Include="Models\Entities\MemberEntity.cs" />

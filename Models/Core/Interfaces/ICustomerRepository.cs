@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NTUB.BookStore.Site.Models.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,6 @@ namespace NTUB.BookStore.Site.Models.Core.Interfaces
 
 		int GetCustomerId(string customeAccount);
 
-		CustomerEntity Load(string customeAccount);
+		CustomerEntiity Load(string customeAccount);
 	}
 }
