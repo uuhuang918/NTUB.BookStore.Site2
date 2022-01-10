@@ -133,12 +133,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Core\Interfaces\CustomerEntity.cs" />
+    <Compile Include="Models\Core\Interfaces\ICustomerRepository.cs" />
     <Compile Include="Models\Core\Interfaces\IMemberRepository.cs" />
     <Compile Include="Models\Core\Interfaces\IProductRepository.cs" />
     <Compile Include="Models\Core\Interfaces\IStockRepository.cs" />
     <Compile Include="Models\Core\Interfaces\IStockService.cs" />
     <Compile Include="Models\Core\ProductService.cs" />
     <Compile Include="Models\Core\MemberService.cs" />
+    <Compile Include="Models\Core\StockService.cs" />
     <Compile Include="Models\DTOs\ChangePasswordRequest.cs" />
     <Compile Include="Models\DTOs\DeductStockInfo.cs" />
     <Compile Include="Models\DTOs\LoginResponse.cs" />
@@ -153,6 +156,7 @@
     <Compile Include="Models\EFModels\OrderItem.cs" />
     <Compile Include="Models\EFModels\Product.cs" />
     <Compile Include="Models\Entities\CategoryEntity.cs" />
+    <Compile Include="Models\Entities\CustomerEntiity.cs" />
     <Compile Include="Models\Entities\MemberEntity.cs" />
     <Compile Include="Models\Entities\ProductEntity.cs" />
     <Compile Include="Models\Entities\RegisterEntity.cs" />
