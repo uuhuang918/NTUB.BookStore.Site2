@@ -136,6 +136,7 @@
     <Compile Include="Models\Core\Interfaces\IMemberRepository.cs" />
     <Compile Include="Models\Core\Interfaces\IProductRepository.cs" />
     <Compile Include="Models\Core\Interfaces\IStockRepository.cs" />
+    <Compile Include="Models\Core\Interfaces\IStockService.cs" />
     <Compile Include="Models\Core\ProductService.cs" />
     <Compile Include="Models\Core\MemberService.cs" />
     <Compile Include="Models\DTOs\ChangePasswordRequest.cs" />
