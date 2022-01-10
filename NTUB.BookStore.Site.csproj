@@ -138,7 +138,9 @@
     <Compile Include="Models\Core\ProductService.cs" />
     <Compile Include="Models\Core\MemberService.cs" />
     <Compile Include="Models\DTOs\ChangePasswordRequest.cs" />
+    <Compile Include="Models\DTOs\DeductStockInfo.cs" />
     <Compile Include="Models\DTOs\LoginResponse.cs" />
+    <Compile Include="Models\DTOs\ReviseStockInfo.cs" />
     <Compile Include="Models\DTOs\UpdateProfileRequest.cs" />
     <Compile Include="Models\EFModels\AppDbContext.cs" />
     <Compile Include="Models\EFModels\Cart.cs" />
