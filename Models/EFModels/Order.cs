@@ -6,41 +6,43 @@ namespace NTUB.BookStore.Site.Models.EFModels
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class Member
+    public partial class Order
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Member()
+        public Order()
         {
-            Orders = new HashSet<Order>();
+            OrderItems = new HashSet<OrderItem>();
         }
 
         public int Id { get; set; }
 
+        public int MemberId { get; set; }
+
+        public int Total { get; set; }
+
+        public DateTime CreatedTime { get; set; }
+
+        public int Status { get; set; }
+
+        public bool RequestRefund { get; set; }
+
+        public DateTime? RequestRefundTime { get; set; }
+
         [Required]
         [StringLength(30)]
-        public string Account { get; set; }
+        public string Receiver { get; set; }
 
         [Required]
-        [StringLength(70)]
-        public string Password { get; set; }
+        [StringLength(200)]
+        public string Address { get; set; }
 
         [Required]
-        [StringLength(30)]
-        public string Name { get; set; }
-
         [StringLength(10)]
-        public string Mobile { get; set; }
+        public string CellPhone { get; set; }
 
-        public bool IsConfirmed { get; set; }
-
-        [StringLength(50)]
-        public string ConfirmCode { get; set; }
-
-        [Required]
-        [StringLength(256)]
-        public string Email { get; set; }
+        public virtual Member Member { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Order> Orders { get; set; }
+        public virtual ICollection<OrderItem> OrderItems { get; set; }
     }
 }
