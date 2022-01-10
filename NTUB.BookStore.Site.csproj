@@ -148,6 +148,7 @@
     <Compile Include="Models\EFModels\Product.cs" />
     <Compile Include="Models\Entities\CategoryEntity.cs" />
     <Compile Include="Models\Entities\MemberEntity.cs" />
+    <Compile Include="Models\Entities\ProductEntity.cs" />
     <Compile Include="Models\Entities\RegisterEntity.cs" />
     <Compile Include="Models\Infrastructures\EmailHelper.cs" />
     <Compile Include="Models\Infrastructures\HashUtility.cs" />
