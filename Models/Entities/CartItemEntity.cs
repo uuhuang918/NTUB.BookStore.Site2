@@ -28,7 +28,7 @@ namespace NTUB.BookStore.Site.Models.Entities
 			set => _Qty = value > 0 ? value : throw new Exception("Qty必須是正數");
 
 		}
-		public int Subtotal => Product.Price * Qty;
+		public int SubTotal => Product.Price * Qty;
 
 
 
