@@ -15,13 +15,13 @@ namespace NTUB.BookStore.Site.Models.Core
 
 		private readonly ICartRepository _repository;
 		private readonly IProductRepository _productRepo;
-		private readonly ICustomerRepository _customerRepository;
+		private readonly ICustomerRepository _customerRepo;
 
 		public CartService(ICartRepository repository,IProductRepository productRepo,ICustomerRepository customerRepo)
 		{
 			_repository = repository;
 			_productRepo = productRepo;
-			_customerRepository = customerRepo;
+			_customerRepo = customerRepo;
 		}
 
 
@@ -66,12 +66,12 @@ namespace NTUB.BookStore.Site.Models.Core
 
 		public void EmptyCart(string customerAccount)
 		{
-			throw new NotImplementedException();
+			_repository.EmptyCart(customerAccount);
 		}
 
 		public DeductStockInfo[] GetDeductStockInfo(CartEntity cart)
 		{
-			throw new NotImplementedException();
+			return cart.GetItems().Select(x => new DeductStockInfo { ProductId = x.Product.Id, Qty = x.Qty }).ToArray();
 		}
 
 		public void RemoveItem(string customerAccount, int productId)
@@ -83,7 +83,19 @@ namespace NTUB.BookStore.Site.Models.Core
 
 		public CreateOrderRequest ToCreateOrderRequest(CartEntity cart)
 		{
-			throw new NotImplementedException();
+			List<CreateOrderItem> items = cart.GetItems().Select(x => new CreateOrderItem
+			{
+				ProductId=x.Product.Id,
+				ProductName=x.Product.Name,
+				Price=x.Product.Price,
+				Qty=x.Qty
+			}).ToList();
+			return new CreateOrderRequest
+			{
+				CustomerId = _customerRepo.GetCustomerId(cart.CustomerAccount),
+				Items = items,
+				ShippingInfo = this.shippingInfo
+			};
 		}
 
 		public void UpdateItem(string customerAccount, int productId, int newQty)
