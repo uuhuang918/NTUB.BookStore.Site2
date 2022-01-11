@@ -166,6 +166,7 @@
     <Compile Include="Models\Entities\CategoryEntity.cs" />
     <Compile Include="Models\Entities\CustomerEntiity.cs" />
     <Compile Include="Models\Entities\MemberEntity.cs" />
+    <Compile Include="Models\Entities\OrderEntity.cs" />
     <Compile Include="Models\Entities\OrderItemEntity.cs" />
     <Compile Include="Models\Entities\OrderProductEntity.cs" />
     <Compile Include="Models\Entities\ProductEntity.cs" />
