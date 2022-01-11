@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace NTUB.BookStore.Site.Models.Core.Interfaces
 {
-	internal interface IOrderService
+	public interface IOrderService
 	{
 		/// <summary>
 		/// 新訂單建立後，觸發本事件
 		/// StockService可以訂閱並扣庫存(可以由mediator操作)
 		/// </summary>
-		event Action<IOrderService, int> OrderCreate;
+		event Action<IOrderService, int> OrderCreated;
 
 		/// <summary>
 		/// 可以由客戶提出退訂申請後，觸發本事件

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace NTUB.BookStore.Site.Models.Core.Interfaces
 {
-	internal interface IOrderRepository
+	public interface IOrderRepository
 	{
 		/// <summary>
 		/// 結帳時，建立一筆新紀錄和明細
@@ -21,7 +21,7 @@ namespace NTUB.BookStore.Site.Models.Core.Interfaces
 		/// 前台由客戶提出退訂申請
 		/// </summary>
 		/// <param name="orderId"></param>
-		void RefundCustomer(int orderId);-
+		void RefundByCustomer(int orderId);
 
 		/// <summary>
 		/// 傳回訂單
