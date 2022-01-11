@@ -56,13 +56,15 @@ namespace NTUB.BookStore.Site.Models.Entities
 			}
 		}
 
+		/// <summary>
+		/// 本系統沒有紀錄客戶收費日期，所以判斷七日可退貨的標準，暫時用訂單成立日期來計算
+		/// </summary>
 		private bool In7Days
 		{
 			get
 			{
 				return (DateTime.Today - this.CreatedTime).TotalDays <= 7.0;
 			}
-
 
 		}
 	}
