@@ -9,7 +9,7 @@ namespace NTUB.BookStore.Site.Models.Entities
 	{
 		public OrderProductEntity(int id, string name, int price)
 		{
-		     Id= id;
+		    Id= id;
 			Name= name;
 			Price= price;
 		}
@@ -25,7 +25,8 @@ namespace NTUB.BookStore.Site.Models.Entities
 		private int _Price;
 		public int Price
 		{
-			get => _Price; set => _Price = value >= 0 ? value : throw new Exception("售價不能小於0");
+			get => _Price; 
+			set => _Price = value >= 0 ? value : throw new Exception("售價不能小於0");
 		}
 	}
 }
