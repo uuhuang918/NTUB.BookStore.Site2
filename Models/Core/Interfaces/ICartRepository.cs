@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace NTUB.BookStore.Site.Models.Core.Interfaces
 {
-	internal interface ICartRepository
+	public interface ICartRepository
 	{
 		/// <summary>
 		/// 傳回此客戶的購物車是否還存在

@@ -14,7 +14,7 @@ namespace NTUB.BookStore.Site.Models.Core.Interfaces
 		/// <summary>
 		/// 客戶發出結帳請求，第二個參數是customerAccount
 		/// </summary>
-		event Action<ICartService, string> RequsetCheckout;
+		event Action<ICartService, string> RequestCheckout;
 
 		/// <summary>
 		///每一個會員在同一時間裡，只會有一筆購物車,若結帳時,將它清;若沒購物車紀錄，自動建立一筆 
@@ -30,10 +30,10 @@ namespace NTUB.BookStore.Site.Models.Core.Interfaces
 		/// <param name="productId"></param>
 		/// <param name="qty"></param>
 
-		void AddItem(string customerAccount, string productId,int qty=1);
+		void AddItem(string customerAccount, int productId,int qty=1);
 
-		void UpdateItem(string customerAccount, string productId, int newQty);
-		void RemoveItem(string customerAccount, string productId);
+		void UpdateItem(string customerAccount, int productId, int newQty);
+		void RemoveItem(string customerAccount, int productId);
 		void EmptyCart(string customerAccount);
 
 		/// <summary>
