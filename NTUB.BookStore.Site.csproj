@@ -140,6 +140,7 @@
     <Compile Include="Models\Core\Interfaces\ICustomerRepository.cs" />
     <Compile Include="Models\Core\Interfaces\IMemberRepository.cs" />
     <Compile Include="Models\Core\Interfaces\IOrderRepository.cs" />
+    <Compile Include="Models\Core\Interfaces\IOrderService.cs" />
     <Compile Include="Models\Core\Interfaces\IProductRepository.cs" />
     <Compile Include="Models\Core\Interfaces\IStockRepository.cs" />
     <Compile Include="Models\Core\Interfaces\IStockService.cs" />

@@ -21,7 +21,7 @@ namespace NTUB.BookStore.Site.Models.Core.Interfaces
 		/// 前台由客戶提出退訂申請
 		/// </summary>
 		/// <param name="orderId"></param>
-		void RefundCustomer(int orderId);
+		void RefundCustomer(int orderId);-
 
 		/// <summary>
 		/// 傳回訂單
