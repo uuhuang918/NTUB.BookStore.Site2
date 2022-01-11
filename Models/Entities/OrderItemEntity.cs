@@ -14,7 +14,7 @@ namespace NTUB.BookStore.Site.Models.Entities
 			Qty = qty;
 		}
 		public int Id { get; set; }
-		private OrderProductEntity _Product;
+		private OrderProductEntity _Product;                                         
 		public OrderProductEntity Product
 		{ get => _Product;
 			set => _Product = value != null ? value : throw new Exception("Product不能是null");

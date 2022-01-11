@@ -14,10 +14,10 @@ namespace NTUB.BookStore.Site.Models.Core.Interfaces
 			_repository = repository;
 		}
 
-		public IEnumerable<ProductEntity> Search(int?categoryId,string productName)
+		public IEnumerable<ProductEntity> SearchActiveProducts(int?categoryId,string productName)
 			=>_repository.Search(categoryId,productName,true);
 
-		public ProductEntity Load(int producId)
+		public ProductEntity LoadActiveProduct(int producId)
 			=>_repository.Load(producId,true);
 	}
 }
