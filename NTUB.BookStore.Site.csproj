@@ -180,6 +180,7 @@
     <Compile Include="Models\Infrastructures\Repositories\CartRepository.cs" />
     <Compile Include="Models\Infrastructures\Repositories\CustomerRepository.cs" />
     <Compile Include="Models\Infrastructures\Repositories\MemberRepository.cs" />
+    <Compile Include="Models\Infrastructures\Repositories\OrderRepository.cs" />
     <Compile Include="Models\Infrastructures\Repositories\ProductRepository.cs" />
     <Compile Include="Models\Infrastructures\Repositories\StockRepository.cs" />
     <Compile Include="Models\UseCases\RegisterCommand.cs" />
