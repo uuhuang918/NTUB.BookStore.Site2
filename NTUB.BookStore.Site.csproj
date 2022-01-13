@@ -130,6 +130,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MembersController.cs" />
+    <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -191,6 +192,7 @@
     <Compile Include="Models\ViewModels\EditProfileVM.cs" />
     <Compile Include="Models\ViewModels\ForgetPasswordVM.cs" />
     <Compile Include="Models\ViewModels\LoginVM.cs" />
+    <Compile Include="Models\ViewModels\ProductVM.cs" />
     <Compile Include="Models\ViewModels\RegisterVM.cs" />
     <Compile Include="Models\ViewModels\ResetPasswordVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -240,6 +242,7 @@
     <Content Include="Views\Members\EditPassword.cshtml" />
     <Content Include="Views\Members\ForgetPassword.cshtml" />
     <Content Include="Views\Members\ConfirmForgetPassword.cshtml" />
+    <Content Include="Views\Products\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
