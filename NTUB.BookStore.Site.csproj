@@ -177,7 +177,10 @@
     <Compile Include="Models\Entities\RegisterEntity.cs" />
     <Compile Include="Models\Infrastructures\EmailHelper.cs" />
     <Compile Include="Models\Infrastructures\HashUtility.cs" />
+    <Compile Include="Models\Infrastructures\Repositories\CustomerRepository.cs" />
     <Compile Include="Models\Infrastructures\Repositories\MemberRepository.cs" />
+    <Compile Include="Models\Infrastructures\Repositories\ProductRepository.cs" />
+    <Compile Include="Models\Infrastructures\Repositories\StockRepository.cs" />
     <Compile Include="Models\UseCases\RegisterCommand.cs" />
     <Compile Include="Models\UseCases\RegisterRequest.cs" />
     <Compile Include="Models\UseCases\RegisterResponse.cs" />
