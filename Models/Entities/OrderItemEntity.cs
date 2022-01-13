@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NTUB.BookStore.Site.Models.EFModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -30,5 +31,14 @@ namespace NTUB.BookStore.Site.Models.Entities
 
 		public int SubTotal=>Product.Price*Qty;
 
+	}
+
+
+	public static partial class OrderItemExts
+	{
+		public static OrderItemEntity ToEntity(this OrderItem source)
+		{
+			return new OrderItemEntity(source.Id,source.Product.ToOrderProductEntity(),source.Qty);
+		}
 	}
 }

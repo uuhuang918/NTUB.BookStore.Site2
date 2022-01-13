@@ -1,4 +1,5 @@
-﻿using NTUB.BookStore.Site.Models.ValueObjects;
+﻿using NTUB.BookStore.Site.Models.EFModels;
+using NTUB.BookStore.Site.Models.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -66,6 +67,40 @@ namespace NTUB.BookStore.Site.Models.Entities
 				return (DateTime.Today - this.CreatedTime).TotalDays <= 7.0;
 			}
 
+		}
+
+
+
+
+
+
+
+	}
+
+	public static partial class OrderExts
+	{
+		public static OrderEntity ToEntity(this Order source)
+		{
+			if (source == null) return null;
+			List<OrderItemEntity> items = source.OrderItems.Select(x => x.ToEntity()).ToList();
+			return new OrderEntity(source.Id, source.MemberId, items, source.CreatedTime, source.GetShippingInfo())
+			{
+				CustomerAccount = source.Member.Account,
+				Status = source.Status,
+				RequestRefund = source.RequestRefund,
+				RequestRefundTime = source.RequestRefundTime,
+
+			};
+		}
+
+		public static ShippingInfo GetShippingInfo(this Order source)
+		{
+			return new ShippingInfo
+			{
+				Receiver = source.Receiver,
+				Address = source.Address,
+				CellPhone = source.CellPhone,
+			};
 		}
 	}
 }

@@ -6,6 +6,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data.Entity;
+
+
 
 namespace NTUB.BookStore.Site.Models.Infrastructures.Repositories
 {
@@ -42,17 +45,39 @@ namespace NTUB.BookStore.Site.Models.Infrastructures.Repositories
 
 		public OrderEntity Load(int orderId)
 		{
-			throw new NotImplementedException();
+			return _db.Orders
+				.AsNoTracking()
+				.Include(x => x.OrderItems.Select(x2=>x2.Product))
+				.Include(x =>x.Member)
+				.SingleOrDefault(x=>x.Id == orderId)
+			    .ToEntity();
+								
 		}
 
 		public void RefundByCustomer(int orderId)
 		{
-			throw new NotImplementedException();
+			var order = _db.Orders.Find(orderId);
+			if (order == null) throw new Exception("order not found");
+
+			order.RequestRefund = true;
+			order.RequestRefundTime= DateTime.Now;
+			_db.SaveChanges();
 		}
 
 		public IEnumerable<OrderEntity> Search(string customerAccount, DateTime? startTime, DateTime? endTime)
 		{
-			throw new NotImplementedException();
+			var query = _db.Orders
+				.AsNoTracking()
+				.Include(x => x.Member)
+				.Include(x => x.OrderItems.Select(x2 => x2.Product))
+				.Where(x => x.Member.Account == customerAccount);
+
+			if(startTime.HasValue)query=query.Where(x=>x.CreatedTime>=startTime);
+			if(endTime.HasValue)query=query.Where(x=>x.CreatedTime<=endTime);
+
+			query = query.OrderByDescending(x => x.Id);
+
+			return query.ToList().Select(x => x.ToEntity()).ToList();
 		}
 	}
 }

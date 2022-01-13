@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NTUB.BookStore.Site.Models.EFModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,9 +10,9 @@ namespace NTUB.BookStore.Site.Models.Entities
 	{
 		public OrderProductEntity(int id, string name, int price)
 		{
-		    Id= id;
-			Name= name;
-			Price= price;
+			Id = id;
+			Name = name;
+			Price = price;
 		}
 
 
@@ -25,8 +26,14 @@ namespace NTUB.BookStore.Site.Models.Entities
 		private int _Price;
 		public int Price
 		{
-			get => _Price; 
+			get => _Price;
 			set => _Price = value >= 0 ? value : throw new Exception("售價不能小於0");
 		}
+	}
+
+	public static partial class ProductExts
+	{
+		public static OrderProductEntity ToOrderProductEntity(this Product source)
+			=>new OrderProductEntity(source.Id, source.Name, source.Price);
 	}
 }
