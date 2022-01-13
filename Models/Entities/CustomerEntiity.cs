@@ -13,11 +13,7 @@ namespace NTUB.BookStore.Site.Models.Entities
 	}
 
 
-	public static class CustomerExts
-	{
-		public static CustomerEntiity ToCustomerEntiity(this Member source)
-			=>new CustomerEntiity { Id=source.Id, CustomerAccount=source.Account};
-	}
+
 
 
 }

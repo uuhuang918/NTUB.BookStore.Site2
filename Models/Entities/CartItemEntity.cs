@@ -1,4 +1,5 @@
 ﻿
+using NTUB.BookStore.Site.Models.EFModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ namespace NTUB.BookStore.Site.Models.Entities
 {
 	public class CartItemEntity
 	{
-		public CartItemEntity(CartProductEntity product,int qty)
+		public CartItemEntity(CartProductEntity product, int qty)
 		{
 			Product = product;
 			Qty = qty;
@@ -30,6 +31,23 @@ namespace NTUB.BookStore.Site.Models.Entities
 		}
 		public int SubTotal => Product.Price * Qty;
 
+
+
+	}
+
+
+	public static class CartItemEntityExts
+	{
+		public static CartItemEntity ToEntity(this CartItem source)
+		{
+			CartProductEntity prod = source.Product.ToCartProduct();
+			return new CartItemEntity(prod, source.Qty) { Id = source.Id };
+		}
+
+		public static CartItem ToEF(this CartItemEntity source, int cartId)
+		{
+			return new CartItem { Id = source.Id, CartId = cartId, ProductId = source.Product.Id, Qty = source.Qty };
+		}
 
 
 	}

@@ -1,4 +1,5 @@
-﻿using NTUB.BookStore.Site.Models.ValueObjects;
+﻿using NTUB.BookStore.Site.Models.EFModels;
+using NTUB.BookStore.Site.Models.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -72,4 +73,26 @@ namespace NTUB.BookStore.Site.Models.Entities
 			=>this.Items;
 	}
 
+
+	public static class CustomerExts
+	{
+		public static CustomerEntiity ToCustomerEntiity(this Member source)
+			=> new CustomerEntiity { Id = source.Id, CustomerAccount = source.Account };
 	}
+	public static class CartExts
+	{
+		public static CartEntity ToEntity(this Cart source)
+		{
+			var items = source.CartItems.Select(x => x.ToEntity()).ToList();
+			return new CartEntity(source.Id, source.MemberAccount, items);
+		}
+
+		public static Cart ToEF(this CartEntity source)
+		{
+			var items = source.GetItems().Select(x => x.ToEF(source.Id)).ToList();
+			return new Cart { Id = source.Id, MemberAccount = source.CustomerAccount, CartItems = items };
+		}
+
+	}
+	
+}
