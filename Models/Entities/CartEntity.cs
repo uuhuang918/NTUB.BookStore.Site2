@@ -32,6 +32,7 @@ namespace NTUB.BookStore.Site.Models.Entities
 		}
 		private List<CartItemEntity> Items;
 		public int Total => Items == null || Items.Count == 0 ? 0 : Items.Sum(x => x.SubTotal);
+		public bool AllowCheckout => Items !=null&& Items.Count > 0;
 		public  ShippingInfo ShippingInfo { get; set; }
 
 		public void AddItem(CartProductEntity product, int qty)

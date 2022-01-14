@@ -33,9 +33,11 @@ namespace NTUB.BookStore.Site.Controllers
             return new EmptyResult();
         }
 
+        [Authorize]
         public ActionResult Info()
 		{
-
+            var cart=cartService.Current(CustomerAccount);
+            return View(cart);
 		}
     }
 }

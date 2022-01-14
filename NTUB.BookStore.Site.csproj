@@ -244,10 +244,10 @@
     <Content Include="Views\Members\ForgetPassword.cshtml" />
     <Content Include="Views\Members\ConfirmForgetPassword.cshtml" />
     <Content Include="Views\Products\Index.cshtml" />
+    <Content Include="Views\Cart\Info.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Cart\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

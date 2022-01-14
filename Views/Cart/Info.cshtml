@@ -1,0 +1,60 @@
+﻿@model NTUB.BookStore.Site.Models.Entities.CartEntity
+
+@{
+    ViewBag.Title = "Info";
+}
+
+<style>
+    .total{
+        display:flex;
+    }
+
+</style>
+
+<h2>Info</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            商品
+        </th>
+        <th>
+            數量
+        </th>
+        <th>
+            小計
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model.GetItems() ){
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Product.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Qty)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.SubTotal)
+    </td>
+    <td>
+    </td>
+</tr>
+}
+
+</table>
+
+<div class="total">
+    <h4>Total:</h4><br /><p>@Model.Total.ToString("#,#")</p>
+
+    <br />
+    @if (Model.AllowCheckout)
+    {
+        <div class=" checkout">
+            <a href="/Cart/Checkout/" class=" btn btn-danger"
+               style="background-color:palevioletred;border-style:hidden; color:ghostwhite">結帳</a>
+        </div>
+    }
+</div>
