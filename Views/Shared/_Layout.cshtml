@@ -24,16 +24,17 @@
                     <li>@Html.ActionLink("Home", "Index", "Products")</li>
                     <li>@Html.ActionLink("關於", "About", "Home")</li>
                     <li>@Html.ActionLink("連絡人", "Contact", "Home")</li>
-                    @{ 
+                    @{
                         if (User.Identity.IsAuthenticated)
-			                 {
-                             <li>@Html.ActionLink("登出","Logout","Members")</li>
-                             <li><a href="/Members/Index/">@(User.Identity.Name)</a></li>
-			                 }
+                        {
+                            <li>@Html.ActionLink("登出", "Logout", "Members")</li>
+                            <li><a href="/Members/Index/">@(User.Identity.Name)</a></li>
+                            <li>@Html.ActionLink("購物車", "Info", "Cart")</li>
+                        }
                         else
-			                 {
-                              <li> @Html.ActionLink("登出", "Logout", "Members")</li>
-			                 }
+                        {
+                            <li> @Html.ActionLink("登入", "Login", "Members")</li>
+                        }
                     }
                 </ul>
             </div>

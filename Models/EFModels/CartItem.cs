@@ -8,7 +8,7 @@ namespace NTUB.BookStore.Site.Models.EFModels
 
     public partial class CartItem
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        //[DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
 
         public int CartId { get; set; }
@@ -17,7 +17,7 @@ namespace NTUB.BookStore.Site.Models.EFModels
 
         public int Qty { get; set; }
 
-        public int Price { get; set; }
+ 
 
         public virtual Cart Cart { get; set; }
 

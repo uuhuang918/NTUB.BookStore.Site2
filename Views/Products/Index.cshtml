@@ -30,30 +30,63 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CategoryName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Price)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ProductImage)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Stock)
-        </td>
-        <td>
-            <button class="add2cart btn btn-primary btn-sm" data-id="@item.Id">Add to Cart</button>
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductImage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Stock)
+            </td>
+            <td>
+                @if (User.Identity.IsAuthenticated)
+                {
+                <button class="add2cart btn btn-primary btn-sm"style="background-color:palevioletred;border-style:hidden; color:ghostwhite"  data-id="@item.Id">Add to Cart</button>
+                }
+            </td>
+        </tr>
+    }
 
 </table>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function() {
+            // console.log("Hello");
+            $(".add2cart").each(function () {
+                //console.log("hello");
+                $(this).on("click", function () {
+                   // console.log("hello");
+                    var self = $(this);
+
+                    var productId = self.attr("data-id");
+                    console.log(productId);
+
+                    $.get("/Cart/AddItem?productId=" + productId, null, function (result) {
+                        alert("已加入購物車");
+                    });
+                });
+            });
+        });
+
+      
+        
+    </script>
+     
+
+}
+
